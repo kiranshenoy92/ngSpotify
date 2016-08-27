@@ -1,0 +1,58 @@
+<div *ngIf="album">
+  <div *ngIf="artist">
+  <div class="container">
+    <header class="album-header">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="row">
+             <img class="main-album-thumb" src="{{album.images[0].url}}">
+          </div>
+        </div>
+        <div class="col-md-8">
+          
+            <h3 class="display-3">{{album.name}}</h3>
+              <span class="h6"> by </span><span class="h5">{{artist.name}} </span>
+                <h6 *ngIf="album.artists.length>0">
+                  <span *ngIf="album.artists.length>1 || album.artists[0].name!=artist.name">
+                    Others:
+                  </span>
+                  <span *ngFor="let sideArtist of album.artists">
+                    <span *ngIf="album.artists.length>2 && sideArtist.name!=artist.name  && sideArtist.name!=album.artists[0].name">
+                      ,
+                    </span>
+                    <span *ngIf="sideArtist.name!=artist.name ">
+                      {{sideArtist.name}}
+                    </span>
+                     <span *ngIf="album.artists.length>1 && sideArtist.name==album.artists[album.artists.length-1].name">
+                      .
+                    </span>
+                  </span>
+              </h6>
+              <h6>Release Date: {{album.release_date | date}}</h6>
+              <a class="btn btn-primary album-inside-btn" href="{{album.external_urls.spotify}}" target="_blank">View in Spotify</a>
+            
+          </div>
+        </div>
+      </header>
+      <div class="row album-track">
+        <div class="col-md-offset-4 col-md-8">
+          <div >
+            <h2>Album Tracks</h2>
+            <div *ngFor="let track of album.tracks.items">
+              <div class="well">
+                <h5>{{track.track_number}} - {{track.name}}</h5>
+                <a class="pull-right" href="{{track.preview_url}}" target="_blank">Preview Track</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  

@@ -1,0 +1,22 @@
+<h1>Need Music?</h1>
+<p class="lead">Search the artist you want.</p>
+
+<form [formGroup] = "searchForm">
+  <input type="text" class="form-control" (keyup)="search()" [formControl]="searchMusic">
+</form>
+
+<div *ngIf="searchResult">
+    <div *ngFor="let item of searchResult">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="search-res well">
+              <h5><a routerLink="/artist/{{item.id}}">{{item.name}}</a></h5>
+              <div *ngIf="item.genres.length>0">
+                <strong>Generes:</strong>
+                <span *ngFor="let genre of item.genres">{{genre}}</span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
